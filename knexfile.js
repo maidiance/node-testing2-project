@@ -11,7 +11,7 @@ module.exports = {
   development: {
     ...common,
     connection: {
-      filename: './data/dev.db3'
+      filename: './data/flavors.db3'
     }
   },
 
