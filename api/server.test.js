@@ -84,8 +84,7 @@ describe('test server endpoints for happy path', () => {
 describe('test server endpoints for unhappy path', () => {
 
     test('[GET] /flavors/:id with improper id', async() => {
-        let result = await Flavors.insert({ name: 'popcorn' });
-        result = await request(server).get('/flavors/' + 2);
+        let result = await request(server).get('/flavors/' + 2);
         expect(result.status).toBe(404);
     });
 
@@ -96,14 +95,10 @@ describe('test server endpoints for unhappy path', () => {
         expect(result.status).toBe(400);
     });
 
-    // test('[DELETE] /flavors/:id', async() => {
-    //     let {id} = await Flavors.insert({ name: 'caramel' });
-    //     let result = await request(server).delete('/flavors/' + id);
-    //     expect(result.status).toEqual(200);
-    //     expect(result.body).toEqual({ name: 'caramel', id: 1 });
-    //     const flavors = await db('flavors');
-    //     expect(flavors).toHaveLength(0);
-    // });
+    test('[DELETE] /flavors/:id with improper id', async() => {
+        let result = await request(server).delete('/flavors/' + 2);
+        expect(result.status).toEqual(404);
+    });
 
     // test('[PUT] /flavors/:id', async() => {
     //     let {id} = await Flavors.insert({ name: 'grape' });

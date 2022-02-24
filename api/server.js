@@ -34,7 +34,7 @@ server.post("/flavors", validateFlavor, (req, res) => {
         });
 });
 
-server.delete("/flavors/:id", (req, res) => {
+server.delete("/flavors/:id", checkId, (req, res) => {
     Flavors.remove(req.params.id)
         .then(flavor => {
             res.json(flavor);
