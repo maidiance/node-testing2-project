@@ -89,14 +89,12 @@ describe('test server endpoints for unhappy path', () => {
         expect(result.status).toBe(404);
     });
 
-    // test('[POST] /flavors', async()=> {
-    //     let result = await request(server)
-    //         .post('/flavors')
-    //         .send({ name: 'bacon' });
-    //     expect(result.status).toBe(201);
-    //     result = await Flavors.getById(1);
-    //     expect(result.name).toBe('bacon');
-    // });
+    test('[POST] /flavor without name', async()=> {
+        let result = await request(server)
+            .post('/flavors')
+            .send({ name: '' });
+        expect(result.status).toBe(400);
+    });
 
     // test('[DELETE] /flavors/:id', async() => {
     //     let {id} = await Flavors.insert({ name: 'caramel' });

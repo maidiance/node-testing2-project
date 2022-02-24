@@ -1,6 +1,6 @@
 const express = require("express");
 const Flavors = require("./flavors/flavors-model");
-const {checkId} = require('./flavors/flavors-middleware');
+const {checkId, validateFlavor} = require('./flavors/flavors-middleware');
 
 const server = express();
 
@@ -27,7 +27,7 @@ server.get("/flavors/:id", checkId, (req, res) => {
         });
 });
 
-server.post("/flavors", (req, res) => {
+server.post("/flavors", validateFlavor, (req, res) => {
     Flavors.insert(req.body)
         .then(flavor => {
             res.status(201).json(flavor)

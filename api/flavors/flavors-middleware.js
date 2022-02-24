@@ -10,6 +10,16 @@ const checkId = async(req, res, next) => {
     }
 };
 
+const validateFlavor = async(req, res, next) => {
+    const name = req.body.name;
+    if(!name || name == null || typeof(name) != 'string'){
+        res.status(400).json({message: 'name is required'});
+    } else {
+        next();
+    }
+};
+
 module.exports = {
     checkId,
+    validateFlavor,
 };
