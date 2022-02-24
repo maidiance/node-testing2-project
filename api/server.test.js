@@ -100,13 +100,10 @@ describe('test server endpoints for unhappy path', () => {
         expect(result.status).toEqual(404);
     });
 
-    // test('[PUT] /flavors/:id', async() => {
-    //     let {id} = await Flavors.insert({ name: 'grape' });
-    //     let result = await request(server)
-    //         .put('/flavors/' + id)
-    //         .send({ name: 'blueberry' });
-    //     expect(result.body).toEqual({name: 'blueberry', id: 1});
-    //     let flavor = await Flavors.getById(id);
-    //     expect(flavor).toEqual({name: 'blueberry', id: 1});
-    // });
+    test('[PUT] /flavors/:id with improper id', async() => {
+        let result = await request(server)
+            .put('/flavors/' + 2)
+            .send({ name: 'blueberry' });
+        expect(result.status).toEqual(404);
+    });
 });

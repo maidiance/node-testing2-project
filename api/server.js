@@ -41,7 +41,7 @@ server.delete("/flavors/:id", checkId, (req, res) => {
         });
 });
 
-server.put("/flavors/:id", (req, res) => {
+server.put("/flavors/:id", checkId, (req, res) => {
     Flavors.update(req.params.id, req.body)
         .then(flavor => {
             res.json(flavor);
